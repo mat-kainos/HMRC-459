@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('branch name') {
             steps {
-                sh "echo $BRANCH_NAME"
+                sh "env"
             }
         }
         stage('Check condition') {
