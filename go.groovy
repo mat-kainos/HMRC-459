@@ -8,10 +8,20 @@ pipeline {
                 sh "env"
             }
         }
-        stage('Check condition') {
+        stage('Check condition develop or *_HF') {
             when {
                     beforeAgent true
                     expression { GIT_BRANCH ==~ /(?i:.*_HF)|develop/  } //matches: develop or *_HF or *_hf
+            }
+            steps {
+                sh "echo $GIT_BRANCH"
+            }
+        }
+
+        stage('Check condition feature but not *_HF') {
+            when {
+                    beforeAgent true
+                    expression { GIT_BRANCH ==~ /(?i:?!.*_HF)|feature*/  } //matches: feature* which doesn't contain *_HF
             }
             steps {
                 sh "echo $GIT_BRANCH"
