@@ -11,10 +11,10 @@ pipeline {
         stage('Check condition') {
             when {
                     beforeAgent true
-                    expression { env.BRANCH_NAME ==~ /(?i:.*_HF)|develop/  } //matches: develop or *_HF or *_hf
+                    expression { GIT_BRANCH ==~ /(?i:.*_HF)|develop/  } //matches: develop or *_HF or *_hf
             }
             steps {
-                sh "echo ${env.BRANCH_NAME}"
+                sh "echo $GIT_BRANCH"
             }
         }
     }
