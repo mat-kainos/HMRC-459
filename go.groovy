@@ -21,7 +21,9 @@ pipeline {
         stage('Check condition feature but not *_HF') {
             when {
                     beforeAgent true
-                    expression { GIT_BRANCH ==~ /feature*(?!)(?i:.*_HF)/  } //matches: feature* which doesn't contain *_HF
+                    expression { GIT_BRANCH ==~ /(?i)^(?!.*\\_HF\\b).*feature.*/  } //matches: feature* which doesn't contain *_HF
+                    //\w*Id\b
+                    //^(?!.*\_HF\b).*feature.*
             }
             steps {
                 sh "echo $GIT_BRANCH"
