@@ -14,7 +14,7 @@ pipeline {
                     expression { env.BRANCH_NAME ==~ /(?i:.*_HF)|develop/  } //matches: develop or *_HF or *_hf
             }
             steps {
-                sh "echo $BRANCH_NAME"
+                sh "echo ${env.BRANCH_NAME}"
             }
         }
     }
